@@ -6,12 +6,20 @@
 //
 
 #import "HomeViewController.h"
+#import "Parse/Parse.h"
 
 @interface HomeViewController ()
 
 @end
 
 @implementation HomeViewController
+- (IBAction)didLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+        [self dismissViewControllerAnimated:true completion:nil];
+        NSLog(@"tapped logout");
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
