@@ -207,14 +207,39 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOF-gK-y9H">
+                                <rect key="frame" x="0.0" y="213" width="160" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Use Camera"/>
+                                <connections>
+                                    <action selector="didTapCamera:" destination="cFz-tx-C1l" eventType="touchUpInside" id="xev-aN-5ML"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oh3-kT-DBX">
+                                <rect key="frame" x="0.0" y="252" width="160" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Choose From Photo Album"/>
+                                <connections>
+                                    <action selector="didTapAlbum:" destination="cFz-tx-C1l" eventType="touchUpInside" id="oxn-in-El6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BF2-Vc-7YM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kw4-3z-YLz">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="SOH-t4-LPY"/>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="Ez2-3C-ks2"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="Ez2-3C-ks2">
+                            <connections>
+                                <action selector="didShare:" destination="cFz-tx-C1l" id="ZDf-uI-htJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="captionField" destination="Tl0-b2-k8V" id="CK4-Cd-0BK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3i-1d-mx1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
