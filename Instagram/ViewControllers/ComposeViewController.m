@@ -8,7 +8,7 @@
 #import "ComposeViewController.h"
 #import "Post.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) UIImage *chosenImage;
 
@@ -17,16 +17,21 @@
 @implementation ComposeViewController
 - (IBAction)didShare:(id)sender {
     self.caption = self.captionField.text;
-    if(self.chosenImage != nil){
+    if(self.displayImage != nil){
         [Post postUserImage:self.chosenImage withCaption:self.caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                   NSLog(@"Error posting: %@", error.localizedDescription);
              }
              else{
+                 [self.delegate didPost];
                  NSLog(@"Successfully posted with caption: %@", self.caption);
+                 [self dismissViewControllerAnimated:true completion:nil];
              }
         } ];
     }
+    
+}
+- (IBAction)didClose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
@@ -71,7 +76,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.captionField.text = @"Add a caption...";
+    self.captionField.textColor = [UIColor lightGrayColor];
+    self.captionField.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    //NSLog(@"hit begin editing");
+    if([textView.text isEqualToString: @"Add a caption..."]) {
+        //NSLog(@"if passed");
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+    [textView becomeFirstResponder];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -81,10 +99,17 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     if(editedImage != nil){
-        UIImage *editedImage = [self resizeImage:originalImage withSize:self.chosenImage.size];
-        self.chosenImage = editedImage;
+        CGFloat width = self.displayImage.bounds.size.width * 4;
+        CGFloat height = self.displayImage.bounds.size.height * 4;
+        CGSize newSize = CGSizeMake(width, height);
+        UIImage *editedImage2 = [self resizeImage:editedImage withSize:newSize];
+    
+        self.chosenImage = editedImage2;
+        [self.displayImage setImage:editedImage2];
     } else {
+        
         self.chosenImage = originalImage;
+        [self.displayImage setImage:originalImage];
     }
 
     // Do something with the images (based on your use case)

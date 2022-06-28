@@ -9,6 +9,13 @@
 
 @implementation HomeTableCell
 
+- (void)setPost:(Post *)post {
+    _post = post;
+    self.caption.text = post[@"caption"];
+    self.photoImageView.file = post[@"image"];
+    [self.photoImageView loadInBackground];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

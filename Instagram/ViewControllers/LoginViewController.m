@@ -6,6 +6,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 #import "Parse/Parse.h"
 
 @interface LoginViewController ()
@@ -66,6 +67,9 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HomeViewController *homeVC = [storyboard instantiateViewControllerWithIdentifier:@"homeFeedView"];
+            self.view.window.rootViewController = homeVC;
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:@"LoginSegue" sender:nil];

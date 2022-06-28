@@ -6,8 +6,10 @@
 //
 
 #import "ProfileViewController.h"
+#import "InstaUser.h"
 
 @interface ProfileViewController ()
+@property (nonatomic, strong) InstaUser *currentUser;
 
 @end
 
@@ -16,6 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.currentUser = InstaUser.currentUser;
+    NSLog(@"%@", self.currentUser.username);
+    self.username.text = self.currentUser.username;
+    self.name.text = self.currentUser.name;
+    self.bio.text = self.currentUser.bio;
+    
+    //self.data = self.currentUser.profileImage.getData();
+    if(self.currentUser.profileImage != nil){
+        self.profileImage.file = self.currentUser.profileImage;
+    }
 }
 
 /*

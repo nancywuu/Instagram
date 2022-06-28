@@ -8,9 +8,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol ComposeViewControllerDelegate
+- (void)didPost;
+@end
 
-@interface ComposeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
+@property (weak, nonatomic) IBOutlet UIImageView *displayImage;
 
 @end
 
