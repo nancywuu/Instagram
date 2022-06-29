@@ -14,7 +14,8 @@
 @property (nonatomic, strong) PFUser *author;
 
 @property (nonatomic, strong) NSDate *createdAt;
-
+@property (nonatomic) BOOL favorited;
+@property (nonatomic) BOOL retweeted;
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFileObject *image;
 @property (nonatomic, strong) NSNumber *likeCount;

@@ -14,10 +14,16 @@
 @property (weak, nonatomic) IBOutlet PFImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 
 @end
 
 @implementation DetailViewController
+- (IBAction)didLike:(id)sender {
+}
+- (IBAction)didComment:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

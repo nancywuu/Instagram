@@ -22,15 +22,29 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)didClickDone:(id)sender {
-    [InstaUser updateUser:self.profileImage.image withName:self.nameField.text withUsername:self.usernameField.text withBio:self.bioField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(error){
-              NSLog(@"Error posting: %@", error.localizedDescription);
-         }
-         else{
-             NSLog(@"Successfully updated profile with name: %@", self.nameField.text);
-             [self dismissViewControllerAnimated:true completion:nil];
-         }
-    }];
+    if([self.usernameField.text isEqualToString:@""] && [self.nameField.text isEqualToString:@""] &&
+       [self.bioField.text isEqualToString:@""] && self.profileImage.image == nil){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Fields Empty"
+                                                  message:@"Please make edits"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+
+                       UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action) {}];
+
+                       [alert addAction:defaultAction];
+                       [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [InstaUser updateUser:self.profileImage.image withName:self.nameField.text withUsername:self.usernameField.text withBio:self.bioField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(error){
+                  NSLog(@"Error posting: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully updated profile with name: %@", self.nameField.text);
+                 [self.delegate didEdit];
+                 [self.navigationController popViewControllerAnimated:YES];
+             }
+        }];
+    }
 }
 - (IBAction)changePic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -53,11 +67,11 @@
         CGSize newSize = CGSizeMake(width, height);
         UIImage *editedImage2 = [self resizeImage:editedImage withSize:newSize];
 
-        [self.profileImage setImage:editedImage2];
+        self.profileImage.image = editedImage2;
+        [self.profileImage loadInBackground];
     } else {
-        //[self.chosenImage setImage:originalImage];
-//        [self.chosenImage setImage:originalImage];
-          [self.profileImage setImage:originalImage];
+        self.profileImage.image = originalImage;
+        [self.profileImage loadInBackground];
     }
 
     // Do something with the images (based on your use case)

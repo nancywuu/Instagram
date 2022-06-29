@@ -41,6 +41,8 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
     [query includeKey:@"createdAt"];
+    [query includeKey:@"likeCount"];
+    [query includeKey:@"commentCount"];
     [query orderByDescending:(@"createdAt")];
     //[query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
@@ -87,13 +89,16 @@
         cell.username.text = @"🤖";
     }
     
-//    cell.photoImageView.file = post[@"image"];
+    cell.likeCount.text = [NSString stringWithFormat:@"%@%s", [cell.post.likeCount stringValue], " likes"];
+    cell.commentCount.text = [NSString stringWithFormat:@"%@%s", [cell.post.commentCount stringValue], " comments"];
+    if(post.author[@"profileImage"] != nil){
+        cell.userImage.file = post.author[@"profileImage"];
+        [cell.userImage loadInBackground];
+    }
+    cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2;
+    cell.userImage.clipsToBounds = YES;
     
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"E MMM d HH:mm:ss Z y"];
-//    NSDate *temp = [[NSDate alloc] init];
-//    temp = [dateFormatter dateFromString:pfobj[@"createdAt"]];
-//    NSString *shortTimeAgo = [temp shortTimeAgoSinceNow];
+    
     cell.date.text = post.createdAt.shortTimeAgoSinceNow;
     return cell;
 }
