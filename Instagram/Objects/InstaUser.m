@@ -18,7 +18,7 @@
 + (void) updateUser: ( UIImage * _Nullable )image withName: ( NSString * _Nullable )name withUsername: ( NSString * _Nullable )username withBio: (NSString * _Nullable)bio withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     InstaUser *user = InstaUser.currentUser;
-    if(image.size.width != 0){
+    if(image != nil){
         user[@"profileImage"] = [self getPFFileFromImage:image];
     }
     if(![username isEqualToString:@""]){

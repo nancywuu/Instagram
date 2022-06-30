@@ -19,6 +19,7 @@
     self.usernameField.delegate = self;
     self.nameField.delegate = self;
     self.bioField.delegate = self;
+    self.profileImage.image = self.currentImage;
     // Do any additional setup after loading the view.
 }
 - (IBAction)didClickDone:(id)sender {
@@ -28,11 +29,11 @@
                                                   message:@"Please make edits"
                                                   preferredStyle:UIAlertControllerStyleAlert];
 
-                       UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction * action) {}];
+       UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * action) {}];
 
-                       [alert addAction:defaultAction];
-                       [self presentViewController:alert animated:YES completion:nil];
+       [alert addAction:defaultAction];
+       [self presentViewController:alert animated:YES completion:nil];
     } else {
         [InstaUser updateUser:self.profileImage.image withName:self.nameField.text withUsername:self.usernameField.text withBio:self.bioField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){

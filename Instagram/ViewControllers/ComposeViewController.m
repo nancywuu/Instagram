@@ -7,6 +7,7 @@
 
 #import "ComposeViewController.h"
 #import "Post.h"
+#import "MBProgressHUD/MBProgressHUD.h"
 
 @interface ComposeViewController () <UITextViewDelegate>
 @property (nonatomic, strong) NSString *caption;
@@ -18,6 +19,7 @@
 - (IBAction)didShare:(id)sender {
     self.caption = self.captionField.text;
     if(self.displayImage != nil){
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [Post postUserImage:self.chosenImage withCaption:self.caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error){
                   NSLog(@"Error posting: %@", error.localizedDescription);
@@ -25,6 +27,7 @@
              else{
                  [self.delegate didPost];
                  NSLog(@"Successfully posted with caption: %@", self.caption);
+                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                  [self dismissViewControllerAnimated:true completion:nil];
              }
         } ];

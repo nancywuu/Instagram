@@ -67,6 +67,15 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Invalid Login"
+                                                      message:@"Please ensure your username and password are correct"
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction * action) {}];
+
+           [alert addAction:defaultAction];
+           [self presentViewController:alert animated:YES completion:nil];
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:@"LoginSegue" sender:nil];

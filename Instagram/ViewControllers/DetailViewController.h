@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) Post *obj;
+@property (nonatomic) BOOL liked;
 @end
 
 NS_ASSUME_NONNULL_END

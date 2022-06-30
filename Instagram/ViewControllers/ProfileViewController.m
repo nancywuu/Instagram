@@ -12,8 +12,7 @@
 #import "GridCell.h"
 #import "Post.h"
 
-@interface ProfileViewController () <UICollectionViewDataSource, EditProfileViewDelegate>
-@property (nonatomic, strong) InstaUser *currentUser;
+@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewDelegate>
 @property (nonatomic, strong) NSArray *postArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
@@ -24,8 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.currentUser = InstaUser.currentUser;
+    NSLog(@"loaded in PROFILE");
+    if(!self.isFromTimeline){
+        NSLog(@"detected as not from timeline");
+        self.currentUser = InstaUser.currentUser;
+    } else {
+        NSLog(@"from timeline");
+    }
     self.collectView.dataSource = self;
+    self.collectView.delegate = self;
     NSLog(@"%@", self.currentUser.username);
 
     [self fetchProfile];
@@ -67,6 +73,16 @@
     [self.refreshControl endRefreshing];
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    int totalwidth = self.collectView.bounds.size.width;
+    int numberOfCellsPerRow = 3;
+    //int oddEven = indexPath.row / numberOfCellsPerRow % 2;
+    int dimensions = (CGFloat)(totalwidth / numberOfCellsPerRow) - 10;
+    return CGSizeMake(dimensions, dimensions);
+}
+
+
 - (void) didEdit {
     [self fetchProfile];
 }
@@ -101,6 +117,7 @@
     } else if ([segue.identifier isEqualToString:@"editSegue"]){
         EditProfileViewController *editVC = [segue destinationViewController];
         editVC.delegate = self;
+        editVC.currentImage = self.profileImage.image;
     }
 }
 

@@ -17,6 +17,7 @@
 @dynamic commentCount;
 @dynamic createdAt;
 
+
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
@@ -25,12 +26,26 @@
     
     Post *newPost = [Post new];
     newPost.image = [self getPFFileFromImage:image];
-    newPost.author = [PFUser currentUser];
+    newPost.author = [InstaUser currentUser];
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
     
     [newPost saveInBackgroundWithBlock: completion];
+}
+
++ (void) favorite: (Post * _Nullable)post withValue: ( NSNumber * _Nullable )value withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
+    Post *temp = post;
+    temp.likeCount = value;
+    [temp saveInBackgroundWithBlock: completion];
+}
+
++ (void) comment: (Post * _Nullable)post withValue: ( NSNumber * _Nullable )value withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
+    Post *temp = post;
+    temp.commentCount = value;
+    [temp saveInBackgroundWithBlock: completion];
 }
 
 + (PFFileObject * )getPFFileFromImage: (UIImage * _Nullable)image {

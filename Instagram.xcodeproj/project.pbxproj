@@ -29,6 +29,8 @@
 		7FDA60A2286B7A76002FF556 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA60A1286B7A76002FF556 /* EditProfileViewController.m */; };
 		7FDA60A5286B98DB002FF556 /* InstaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA60A4286B98DB002FF556 /* InstaUser.m */; };
 		7FDA60A8286BC2F8002FF556 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA60A7286BC2F8002FF556 /* GridCell.m */; };
+		7FDA60AF286E185D002FF556 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA60AE286E185D002FF556 /* Comment.m */; };
+		7FDA60B2286E53F5002FF556 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA60B1286E53F5002FF556 /* CameraViewController.m */; };
 		9788FAA5B7AF57C9F556ADFD /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD199CBFA1E8CAFECB5684E /* Pods_Instagram_InstagramUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,10 @@
 		7FDA60A4286B98DB002FF556 /* InstaUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstaUser.m; sourceTree = "<group>"; };
 		7FDA60A6286BC2F8002FF556 /* GridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GridCell.h; path = Instagram/CollectionView/GridCell.h; sourceTree = SOURCE_ROOT; };
 		7FDA60A7286BC2F8002FF556 /* GridCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GridCell.m; path = Instagram/CollectionView/GridCell.m; sourceTree = SOURCE_ROOT; };
+		7FDA60AD286E185D002FF556 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		7FDA60AE286E185D002FF556 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		7FDA60B0286E53F5002FF556 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		7FDA60B1286E53F5002FF556 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		91A823A63B4D40E85A073CE9 /* Pods-Instagram-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5B3864C350D4A5EA1B2FABB /* Pods-InstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramTests/Pods-InstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		E307FB8B876D8313D46B68BB /* Pods-InstagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTests.debug.xcconfig"; path = "Target Support Files/Pods-InstagramTests/Pods-InstagramTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 				7F1B97DB286A66630087AC47 /* DetailViewController.m */,
 				7F1B97BE286A49380087AC47 /* HomeViewController.h */,
 				7F1B97BF286A49380087AC47 /* HomeViewController.m */,
+				7FDA60B0286E53F5002FF556 /* CameraViewController.h */,
+				7FDA60B1286E53F5002FF556 /* CameraViewController.m */,
 				7F1B97C1286A49400087AC47 /* ComposeViewController.h */,
 				7F1B97C2286A49400087AC47 /* ComposeViewController.m */,
 				7F1B97C4286A494D0087AC47 /* LoginViewController.h */,
@@ -230,6 +238,8 @@
 			children = (
 				7F1B97D7286A56BC0087AC47 /* Post.h */,
 				7F1B97D8286A56BC0087AC47 /* Post.m */,
+				7FDA60AD286E185D002FF556 /* Comment.h */,
+				7FDA60AE286E185D002FF556 /* Comment.m */,
 				7FDA60A3286B98DB002FF556 /* InstaUser.h */,
 				7FDA60A4286B98DB002FF556 /* InstaUser.m */,
 			);
@@ -505,10 +515,12 @@
 				7F1B97CA286A4B0A0087AC47 /* ProfileViewController.m in Sources */,
 				7F1B97DC286A66630087AC47 /* DetailViewController.m in Sources */,
 				7FDA60A2286B7A76002FF556 /* EditProfileViewController.m in Sources */,
+				7FDA60B2286E53F5002FF556 /* CameraViewController.m in Sources */,
 				7F1B97C3286A49400087AC47 /* ComposeViewController.m in Sources */,
 				7F1B97D9286A56BC0087AC47 /* Post.m in Sources */,
 				7FDA60A8286BC2F8002FF556 /* GridCell.m in Sources */,
 				7FDA60A5286B98DB002FF556 /* InstaUser.m in Sources */,
+				7FDA60AF286E185D002FF556 /* Comment.m in Sources */,
 				7F1B97C0286A49380087AC47 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
